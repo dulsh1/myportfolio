@@ -1,216 +1,153 @@
 import React, { useState } from "react";
 import { projects } from "../../constants";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
+import { FiGithub, FiExternalLink, FiFolder } from "react-icons/fi";
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-    },
-  },
-};
+const ProjectCard = ({ project }) => {
+  return (
+    <motion.div
+      className="group relative"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      whileHover={{ y: -5 }}
+      transition={{ duration: 0.3 }}
+    >
+      <div className="relative bg-[#1a1a1a]/80 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800/50 hover:border-purple-500/50 transition-all duration-500">
+        {/* Project Image with Overlay */}
+        <div className="relative h-56 overflow-hidden">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1a1a1a] via-[#1a1a1a]/50 to-transparent opacity-90" />
+          
+          {/* Action Buttons */}
+          <div className="absolute top-4 right-4 flex items-center space-x-3 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
+            {project.github && (
+              <motion.a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-purple-500 hover:text-white transition-colors"
+                whileHover={{ scale: 1.1, rotate: 360 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <FiGithub className="w-5 h-5" />
+              </motion.a>
+            )}
+            {project.webapp && (
+              <motion.a
+                href={project.webapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-purple-500 hover:text-white transition-colors"
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                <FiExternalLink className="w-5 h-5" />
+              </motion.a>
+            )}
+          </div>
+        </div>
 
-const projectVariants = {
-  hidden: { y: 50, opacity: 0 },
-  visible: {
-    y: 0,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      bounce: 0.4,
-      duration: 0.8,
-    },
-  },
-};
+        {/* Project Info */}
+        <div className="p-6">
+          <div className="flex items-center gap-2 mb-3">
+            <motion.div
+              whileHover={{ rotate: 15 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <FiFolder className="text-purple-500 w-5 h-5" />
+            </motion.div>
+            <h3 className="text-xl font-bold text-white group-hover:text-purple-500 transition-colors duration-300">
+              {project.title}
+            </h3>
+          </div>
+          
+          <p className="text-gray-400 text-sm mb-4 line-clamp-2 group-hover:text-gray-300 transition-colors duration-300">
+            {project.description}
+          </p>
+          
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((tag, index) => (
+              <motion.span
+                key={index}
+                className="px-3 py-1 text-xs rounded-full bg-purple-500/10 text-purple-400 border border-purple-500/20 hover:bg-purple-500/20 transition-colors duration-300"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                {tag}
+              </motion.span>
+            ))}
+          </div>
 
-const modalVariants = {
-  hidden: { scale: 0.8, opacity: 0 },
-  visible: {
-    scale: 1,
-    opacity: 1,
-    transition: {
-      type: "spring",
-      duration: 0.5,
-    },
-  },
-  exit: {
-    scale: 0.8,
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-    },
-  },
+          {/* Project Links - Bottom */}
+          <div className="mt-6 flex justify-end space-x-4">
+            {project.github && (
+              <motion.a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+                whileHover={{ scale: 1.1 }}
+              >
+                <FiGithub className="w-5 h-5" />
+              </motion.a>
+            )}
+            {project.webapp && (
+              <motion.a
+                href={project.webapp}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-400 hover:text-purple-500 transition-colors"
+                whileHover={{ scale: 1.1 }}
+              >
+                <FiExternalLink className="w-5 h-5" />
+              </motion.a>
+            )}
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  );
 };
 
 const Work = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-
-  const handleOpenModal = (project) => {
-    setSelectedProject(project);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedProject(null);
-  };
-
   return (
-    <motion.section
-      id="work"
-      className="py-24 pb-24 px-[12vw] md:px-[7vw] lg:px-[20vw] font-sans relative"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      variants={containerVariants}
-    >
-      {/* Section Title */}
-      <motion.div
-        className="text-center mb-16"
-        initial={{ opacity: 0, y: -20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        <h2 className="text-4xl font-bold text-white">PROJECTS</h2>
+    <section className="py-24 bg-gradient-to-b from-[#0a0a0a] to-[#121212] relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Section Title */}
         <motion.div
-          className="w-32 h-1 bg-purple-500 mx-auto mt-4"
-          initial={{ width: 0 }}
-          whileInView={{ width: "8rem" }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        />
-        <p className="text-gray-400 mt-4 text-lg font-semibold">
-          A showcase of the projects I have worked on, highlighting my skills
-          and experience in various technologies
-        </p>
-      </motion.div>
-
-      {/* Projects Grid */}
-      <motion.div
-        className="grid gap-12 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
-        variants={containerVariants}
-      >
-        {projects.map((project) => (
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-purple-500 to-pink-500">
+            Projects
+          </h2>
           <motion.div
-            key={project.id}
-            variants={projectVariants}
-            whileHover={{ 
-              scale: 1.05,
-              boxShadow: "0 0 25px rgba(130,69,236,0.4)",
-            }}
-            onClick={() => handleOpenModal(project)}
-            className="border border-white bg-gray-900 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer transition-all duration-300"
-          >
-            <motion.div
-              className="p-4"
-              whileHover={{ scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
-              <img
-                src={project.image}
-                alt={project.title}
-                className="w-full h-48 object-cover rounded-xl"
-              />
-            </motion.div>
-            <div className="p-6">
-              <h3 className="text-2xl font-bold text-white mb-2">
-                {project.title}
-              </h3>
-              <p className="text-gray-500 mb-4 pt-4 line-clamp-3">
-                {project.description}
-              </p>
-              <div className="mb-4">
-                {project.tags.map((tag, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    animate={{ scale: 1, opacity: 1 }}
-                    transition={{ delay: index * 0.1 }}
-                    className="inline-block bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1 mr-2 mb-2"
-                  >
-                    {tag}
-                  </motion.span>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        ))}
-      </motion.div>
+            className="w-32 h-1 bg-gradient-to-r from-purple-500 to-pink-500 mx-auto mt-4"
+            initial={{ width: 0 }}
+            whileInView={{ width: "8rem" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          />
+          <p className="text-gray-400 mt-4 text-lg">Showcasing my creative work</p>
+        </motion.div>
 
-      {/* Modal Container with AnimatePresence */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <motion.div
-              className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative"
-              variants={modalVariants}
-              initial="hidden"
-              animate="visible"
-              exit="exit"
-            >
-              <div className="flex justify-end p-4">
-                <button
-                  onClick={handleCloseModal}
-                  className="text-white text-3xl font-bold hover:text-purple-500"
-                >
-                  &times;
-                </button>
-              </div>
+        {/* Projects Grid */}
+        <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
+          {projects.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      </div>
 
-              <div className="flex flex-col">
-                <div className="w-full flex justify-center bg-gray-900 px-4">
-                  <img
-                    src={selectedProject.image}
-                    alt={selectedProject.title}
-                    className="lg:w-full w-[95%] object-contain rounded-xl shadow-2xl"
-                  />
-                </div>
-                <div className="lg:p-8 p-6">
-                  <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
-                    {selectedProject.title}
-                  </h3>
-                  <p className="text-gray-400 mb-6 lg:text-base text-xs">
-                    {selectedProject.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {selectedProject.tags.map((tag, index) => (
-                      <span
-                        key={index}
-                        className="bg-[#251f38] text-xs font-semibold text-purple-500 rounded-full px-2 py-1"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    <a
-                      href={selectedProject.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-1/2 bg-gray-800 hover:bg-purple-800 text-gray-400 lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
-                    >
-                      View Code
-                    </a>
-                    <a
-                      href={selectedProject.webapp}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-1/2 bg-purple-600 hover:bg-purple-800 text-white lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
-                    >
-                      View Live
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.section>
+      {/* Background Pattern */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+    </section>
   );
 };
 

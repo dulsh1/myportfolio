@@ -53,6 +53,7 @@ import githubdetLogo from './assets/work_logo/github_det.png';
 import csprepLogo from './assets/work_logo/cs_prep.png';
 import movierecLogo from './assets/work_logo/movie_rec.png';
 import figmaLogo from './assets/work_logo/figma.png';
+import android from './assets/work_logo/finance.jpg';
 
 import iotLogo from './assets/company_logo/iot.png';
 
@@ -347,40 +348,47 @@ export const SkillsInfo = [
   export const projects = [
     {
       id: 0,
-      title: "fabfarm clothing flatform ui ux design",
-      image:figmaLogo,
-      description:"FabFarm is a modern clothing platform UI/UX project designed in Figma. The app features a clean, user-friendly interface for browsing, selecting, and purchasing clothing items. Built with a focus on seamless shopping experiences and stylish design.",
-      tags: ["figma", "design", "ui/ux" ],
-      github: "https://github.com/codingmastr/GitHub-Profile-Search-App-Using-React-JS",
-      webapp: "https://www.figma.com/proto/AfBZ5DJSAkk7Ab281MELa6/fabfam-clothing?node-id=0-1&t=YioewTts45zAysyN-1",
+      title: "FabFarm Clothing Platform",
+      image: figmaLogo,
+      description: "A modern clothing platform UI/UX project with clean, user-friendly interface for seamless shopping experiences. Features intuitive navigation, responsive design, and streamlined checkout process.",
+      tags: ["Figma", "UI/UX", "Prototyping", "Design System"],
+      github: "https://github.com/dulsh1/fabfam-clothing",
+      webapp: "https://www.figma.com/proto/AfBZ5DJSAkk7Ab281MELa6/fabfam-clothing",
+      tech_stack: ["Figma", "Prototyping", "UX Research"]
     },
     {
       id: 1,
-      title: "Online Laundry Management System ",
+      title: "PAT PAT CLEANING",
+      subtitle: "Laundry Management System",
       date: "Aug 2024 - Oct 2024",
-      
-      description: "PAT PAT CLEANING is an online platform that streamlines laundry management for customers and staff. Users can schedule pickups, select services, make payments, and track orders easily. The system simplifies operations for staff and administrators, ensuring a smooth and efficient laundry experience.",
+      description: "Full-stack laundry management platform with real-time order tracking, payment integration, and comprehensive staff management portal. Features intuitive scheduling and automated notifications.",
       image: homeImage,
-      
-      tags: ["MySQL", "Express", "HTML", "CSS", "Java","Bootstrap (Framework)"],
-      github: "",
-      webapp: homeImage,
+      tags: ["MySQL", "Express", "Java", "Bootstrap", "Full Stack"],
+      github: "https://github.com/dulsh1/patpat-cleaning",
+      webapp: "https://patpat-cleaning.vercel.app",
+      tech_stack: ["Java", "MySQL", "Express", "Bootstrap"]
     },
     {
       id: 2,
       title: "Movie Recommendation App",
-      description:
-        "A React-based web application that provides movie recommendations based on different criteria, such as genres, user preferences, and popular trends. The intuitive design and smooth experience make it a go-to app for movie enthusiasts.",
+      description: "Advanced movie recommendation engine using React and modern APIs. Features personalized suggestions, dynamic content loading, and comprehensive search functionality.",
       image: movierecLogo,
-      tags: ["React JS", "API", "HTML", "CSS", "JavaScript"],
-      github: "https://github.com/codingmastr/Movie-Recommendation-App",
-      webapp: "https://movie-recommendation-app-jet.vercel.app/",
+      tags: ["React", "API", "JavaScript", "Tailwind CSS"],
+      github: "https://github.com/dulsh1/movie-recommendation",
+      webapp: "https://movie-recommendation-app-jet.vercel.app",
+      tech_stack: ["React", "RESTful APIs", "JavaScript"]
     },
-    
-    
-    
-    
-  ];
+    {
+      id: 3,
+      title: "Finance Tracker App",
+      image: android,
+      description: "Comprehensive finance tracking application with expense management, budget planning, and financial analytics. Built with modern Android development practices and Material Design.",
+      tags: ["Kotlin", "Android", "Firebase", "MVVM"],
+      github: "https://github.com/dulsh1/financeTracker.git",
+      webapp: "https://play.google.com/store/apps/details?id=com.dulsh1.financetracker",
+      tech_stack: ["Kotlin", "Firebase", "Android SDK", "MVVM"]
+    }
+];
   
   export const services = [
   {
