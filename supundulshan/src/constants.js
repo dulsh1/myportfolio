@@ -54,6 +54,7 @@ import csprepLogo from './assets/work_logo/cs_prep.png';
 import movierecLogo from './assets/work_logo/movie_rec.png';
 import figmaLogo from './assets/work_logo/figma.png';
 import android from './assets/work_logo/finance.jpg';
+import  ecommerce from './assets/work_logo/ecommerce.png';
 
 import iotLogo from './assets/company_logo/iot.png';
 
@@ -378,6 +379,16 @@ export const SkillsInfo = [
       webapp: "https://movie-recommendation-app-jet.vercel.app",
       tech_stack: ["React", "RESTful APIs", "JavaScript"]
     },
+    {id: 4,
+title: "e-commerce store frontend",
+description: "Modern e-commerce store frontend built with React. Features include product browsing, cart management, wishlist, responsive design, and seamless shopping experience similar to platforms like Daraz.",
+image: ecommerce,
+tags: ["React", "API", "JavaScript", "Tailwind CSS"],
+github: "https://github.com/dulsh1/ecommerce-estore.git",
+webapp: "https://ecommerce-estore.vercel.app",
+tech_stack: ["React", "RESTful APIs", "JavaScript"]
+    },
+
     {
       id: 3,
       title: "Finance Tracker App",
