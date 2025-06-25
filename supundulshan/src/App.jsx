@@ -1,4 +1,3 @@
-import React from "react";
 import Navbar from "./components/Navbar/Navbar";
 import About from "./components/About/About";
 import Skills from "./components/Skills/Skills";
@@ -9,6 +8,7 @@ import Footer from "./components/Footer/Footer";
 import BlurBlob from './components/BlurBlob';
 import Certificates from "./components/Experience/Experience";
 import Service from "./components/service/service";
+import Chatbot from "./components/Chatbot/Chatbot";
 import { motion } from "framer-motion";
 
 const App = () => {
@@ -123,9 +123,12 @@ const App = () => {
         <Footer />
       </motion.div>
 
+      {/* Modern Animated Chatbot */}
+      <Chatbot />
+
       {/* Scroll Progress Indicator */}
       <motion.div
-        className="fixed bottom-4 right-4 w-12 h-12 flex items-center justify-center bg-purple-500/20 backdrop-blur-sm rounded-full border border-purple-500/30 cursor-pointer hover:bg-purple-500/30 transition-all duration-300"
+        className="fixed bottom-4 left-6 w-12 h-12 flex items-center justify-center bg-purple-500/20 backdrop-blur-sm rounded-full border border-purple-500/30 cursor-pointer hover:bg-purple-500/30 transition-all duration-300"
         whileHover={{ scale: 1.1 }}
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       >

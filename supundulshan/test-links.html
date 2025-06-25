@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Project Links</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .project { margin: 20px 0; padding: 15px; border: 1px solid #ddd; border-radius: 8px; }
+        .link { display: inline-block; margin: 5px 10px 5px 0; padding: 8px 16px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; }
+        .link:hover { background: #0056b3; }
+        .github { background: #333; }
+        .demo { background: #28a745; }
+    </style>
+</head>
+<body>
+    <h1>Test Project Links</h1>
+    
+    <div class="project">
+        <h3>FabFarm Clothing Platform</h3>
+        <a href="https://github.com/dulsh1/fabfam-clothing" target="_blank" class="link github">GitHub</a>
+        <a href="https://www.figma.com/proto/AfBZ5DJSAkk7Ab281MELa6/fabfam-clothing" target="_blank" class="link demo">Figma Demo</a>
+    </div>
+    
+    <div class="project">
+        <h3>PAT PAT CLEANING</h3>
+        <a href="https://github.com/dulsh1/patpat-cleaning" target="_blank" class="link github">GitHub</a>
+        <a href="https://patpat-cleaning.vercel.app" target="_blank" class="link demo">Live Demo</a>
+    </div>
+    
+    <div class="project">
+        <h3>Movie Recommendation App</h3>
+        <a href="https://github.com/dulsh1/movie-recommendation" target="_blank" class="link github">GitHub</a>
+        <a href="https://movie-recommendation-app-jet.vercel.app" target="_blank" class="link demo">Live Demo</a>
+    </div>
+    
+    <div class="project">
+        <h3>E-commerce Store Frontend</h3>
+        <a href="https://github.com/dulsh1/ecommerce-estore.git" target="_blank" class="link github">GitHub</a>
+        <a href="https://ecommerce-estore.vercel.app" target="_blank" class="link demo">Live Demo</a>
+    </div>
+    
+    <div class="project">
+        <h3>Finance Tracker App</h3>
+        <a href="https://github.com/dulsh1/financeTracker.git" target="_blank" class="link github">GitHub</a>
+        <a href="https://play.google.com/store/apps/details?id=com.dulsh1.financetracker" target="_blank" class="link demo">Play Store</a>
+    </div>
+    
+    <script>
+        // Test if all links work programmatically
+        document.querySelectorAll('.link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                console.log('Link clicked:', link.href);
+            });
+        });
+    </script>
+</body>
+</html>
