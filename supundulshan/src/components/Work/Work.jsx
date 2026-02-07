@@ -6,7 +6,7 @@ import dffPng from '../../assets/ITSC/dff.png';
 import rugby1 from '../../assets/tshirt/ghhhhhh.jpg';
 import rugby2 from '../../assets/tshirt/new rygby jersy.jpg';
 import footballJersey from '../../assets/tshirt/football.jpeg';
-import dblImg from '../../assets/tshirt/DBL.JPG';
+import dblImg from '../../assets/tshirt/dbl1.JPG';
 import boomImg from '../../assets/tshirt/boom.JPG';
 import img7729 from '../../assets/tshirt/IMG_7729.JPG';
 import img7730 from '../../assets/tshirt/IMG_7730.JPG';
